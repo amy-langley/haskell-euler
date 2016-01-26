@@ -1,7 +1,7 @@
 import           Data.List
 
 multiples :: Integer -> [Integer] -> [Integer]
-multiples n = filter $  \x -> x `mod` n == 0
+multiples n ns = [ x | x <- ns, x `mod` n == 0]
 
 mult3 :: [Integer]
 mult3 = multiples 3 [1..999]
