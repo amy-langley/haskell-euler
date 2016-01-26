@@ -14,10 +14,11 @@ candidates upto = takeWhile  ( < upto ) primes
 
 removePrimes :: Integer -> Integer -> [Integer] -> Integer
 removePrimes largest _ [] = largest
-removePrimes largest factorme (p:ps) =
-  if largest > factorme then largest
-  else if factorme `mod` p == 0 then (removePrimes p (factorme `div` p) (p:ps))
-  else removePrimes largest factorme ps
+removePrimes largest factorme (p : ps)
+  | largest > factorme = largest
+  | factorme `mod` p == 0 =
+    removePrimes p (factorme `div` p) (p : ps)
+  | otherwise = removePrimes largest factorme ps
 
 factor :: Integer -> Integer
 factor x = removePrimes 1 x $ candidates x
